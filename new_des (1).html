@@ -1,0 +1,2829 @@
+<!DOCTYPE html>        
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Produktsida - Redesign iPhone 17 Pro Max</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body{
+      font-family:'Amazon Ember', Arial, sans-serif;
+      background:#f5f5f5;
+      color:#0F1111;
+      line-height:1.6;
+    }
+
+    .container{
+      max-width:1400px;
+      margin:0 auto;
+      padding:20px;
+    }
+
+    /* ── AMAZON.SE NAVBAR ── */
+    .amz-nav-top{
+      background:#131921;
+      padding:0 16px;
+      height:60px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .amz-logo{
+      display:flex;
+      align-items:flex-end;
+      gap:0;
+      margin-right:6px;
+      flex-shrink:0;
+      cursor:pointer;
+      padding:4px 6px;
+      border:1px solid transparent;
+      border-radius:3px;
+      position:relative;
+      padding-bottom:6px;
+    }
+    .amz-logo:hover{ border-color:#fff; }
+    .amz-logo-text{ font-size:26px; font-weight:700; color:#fff; font-family:Arial, sans-serif; letter-spacing:-1px; line-height:1;}
+    .amz-logo-se{ font-size:13px; color:#fff; margin-bottom:2px; font-family:Arial, sans-serif;}
+
+    .amz-deliver{
+      display:flex;
+      flex-direction:column;
+      color:#fff;
+      cursor:pointer;
+      padding:4px 8px;
+      border:1px solid transparent;
+      border-radius:3px;
+      flex-shrink:0;
+      margin-left:48px;
+    }
+    .amz-deliver:hover{ border-color:#fff; }
+    .amz-deliver-top{
+      display:flex;
+      align-items:center;
+      gap:3px;
+      font-size:11px;
+      color:#ccc;
+    }
+    .amz-deliver-bottom{ font-size:13px; font-weight:700; white-space:nowrap; }
+
+    .amz-search{
+      flex:1;
+      display:flex;
+      height:40px;
+      border-radius:6px;
+      overflow:hidden;
+      margin:0 8px;
+    }
+    .amz-search-cat{
+      background:#e8e0d0;
+      border:none;
+      padding:0 8px 0 12px;
+      font-size:12px;
+      cursor:pointer;
+      border-right:1px solid #ccc;
+      white-space:nowrap;
+      font-family:Arial, sans-serif;
+      min-width:110px;
+    }
+    .amz-search-input{
+      flex:1;
+      border:none;
+      outline:none;
+      padding:0 14px;
+      font-size:15px;
+      font-family:Arial, sans-serif;
+    }
+    .amz-search-btn{
+      background:#FF9900;
+      border:none;
+      padding:0 16px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:background .15s;
+    }
+    .amz-search-btn:hover{ background:#e88b00; }
+
+    .amz-lang{
+      display:flex;
+      align-items:center;
+      gap:4px;
+      color:#fff;
+      font-size:13px;
+      font-weight:600;
+      cursor:pointer;
+      padding:4px 8px;
+      border:1px solid transparent;
+      border-radius:3px;
+      flex-shrink:0;
+    }
+    .amz-lang:hover{ border-color:#fff; }
+
+    .amz-nav-link{
+      display:flex;
+      flex-direction:column;
+      color:#fff;
+      text-decoration:none;
+      font-family:Arial, sans-serif;
+      cursor:pointer;
+      padding:4px 8px;
+      border:1px solid transparent;
+      border-radius:3px;
+      flex-shrink:0;
+      white-space:nowrap;
+    }
+    .amz-nav-link:hover{ border-color:#fff; }
+    .amz-nav-link-top{ font-size:11px; color:#ccc; }
+    .amz-nav-link-bot{ font-size:13px; font-weight:700; }
+
+    .amz-cart{
+      display:flex;
+      align-items:center;
+      gap:4px;
+      color:#fff;
+      cursor:pointer;
+      padding:4px 8px;
+      border:1px solid transparent;
+      border-radius:3px;
+      flex-shrink:0;
+      position:relative;
+    }
+    .amz-cart:hover{ border-color:#fff; }
+    .amz-cart-count{
+      position:absolute;
+      top:4px;
+      left:22px;
+      background:#FF9900;
+      color:#111;
+      font-size:13px;
+      font-weight:800;
+      min-width:18px;
+      text-align:center;
+      border-radius:10px;
+      padding:0 2px;
+      line-height:18px;
+      font-family:Arial, sans-serif;
+    }
+    .amz-cart-label{ font-size:13px; font-weight:700; margin-top:14px; }
+
+    .amz-nav-bot{
+      background:#232f3e;
+      padding:0 16px;
+      height:38px;
+      display:flex;
+      align-items:center;
+      gap:0;
+      overflow:hidden;
+    }
+    .amz-nav-bot-link{
+      color:#fff;
+      text-decoration:none;
+      font-size:13px;
+      font-family:Arial, sans-serif;
+      padding:0 12px;
+      height:38px;
+      display:flex;
+      align-items:center;
+      border:1px solid transparent;
+      border-radius:3px;
+      white-space:nowrap;
+      cursor:pointer;
+      transition:border-color .15s;
+    }
+    .amz-nav-bot-link:hover{ border-color:#fff; }
+    .amz-nav-bot-link.all-menu{ gap:6px; font-weight:700; }
+    .amz-nav-bot-divider{ flex:1; }
+    .amz-nav-bot-promo{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      color:#fff;
+      font-size:13px;
+      cursor:pointer;
+      padding:0 10px;
+      height:38px;
+    }
+    .amz-nav-bot-promo .ball{ font-size:18px; }
+    .amz-nav-bot-promo .promo-label{ font-weight:700; color:#FF9900; }
+    .amz-prime-link{
+      color:#00A8E0;
+      font-size:13px;
+      font-weight:700;
+      padding:0 10px;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+
+    /* iPhone model nav */
+    .model-nav{
+      background:#fff;
+      border-bottom:1px solid #e0e0e0;
+      padding:0 20px;
+      margin-bottom:20px;
+    }
+    .model-nav-content{
+      max-width:1400px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      overflow-x:auto;
+    }
+    .model-nav-title{
+      font-size:20px;
+      font-weight:700;
+      padding:16px 24px 16px 0;
+      border-right:1px solid #e0e0e0;
+      margin-right:24px;
+      white-space:nowrap;
+    }
+    .model-nav-items{ display:flex; }
+    .model-nav-item{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:8px;
+      padding:12px 16px;
+      cursor:pointer;
+      text-decoration:none;
+      color:#007185;
+      font-size:13px;
+      border-bottom:3px solid transparent;
+      transition:all .2s;
+      white-space:nowrap;
+    }
+    .model-nav-item:hover{ border-bottom-color:#FF9900; color:#0F1111; }
+    .model-nav-item.active{ border-bottom-color:#FF9900; color:#0F1111; font-weight:600; }
+    .model-nav-item img{ width:48px; height:48px; object-fit:contain; }
+
+    /* Main Product Section */
+    .product-section{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      background:#fff;
+      padding:30px;
+      border-radius:8px;
+      margin-bottom:20px;
+    }
+
+    .product-image-section{ display:flex; flex-direction:column; gap:15px; }
+    .main-image{
+      width:100%;
+      aspect-ratio:1;
+      background:#f8f8f8;
+      border:1px solid #ddd;
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .main-image img{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      transition:transform .3s ease, opacity .25s ease;
+    }
+    .main-image:hover img{ transform:scale(1.04); }
+    .zoom-label{
+      position:absolute;
+      bottom:12px;
+      right:12px;
+      font-size:12px;
+      color:#007185;
+      background:rgba(255,255,255,.85);
+      padding:4px 8px;
+      border-radius:4px;
+    }
+    .thumbnail-container{ display:flex; gap:10px; overflow-x:auto; }
+    .thumbnail{
+      width:80px;
+      height:80px;
+      border:2px solid #ddd;
+      border-radius:4px;
+      cursor:pointer;
+      flex-shrink:0;
+      background:#f8f8f8;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:border-color .2s;
+      overflow:hidden;
+    }
+    .thumbnail:hover,.thumbnail.active{ border-color:#FF9900; }
+    .thumbnail img{ max-width:100%; max-height:100%; object-fit:contain; }
+
+    .product-info-section{ display:flex; flex-direction:column; gap:20px; }
+
+    .product-summary{
+      padding:20px;
+      background:linear-gradient(to bottom,#fff 0%, #fafafa 100%);
+      border-radius:8px;
+      border:1px solid #e0e0e0;
+    }
+    .brand-link{
+      color:#007185;
+      font-size:14px;
+      text-decoration:none;
+      display:block;
+      margin-bottom:8px;
+    }
+    .brand-link:hover{ text-decoration:underline; }
+
+    .product-title{
+      font-size:22px;
+      font-weight:400;
+      color:#0F1111;
+      line-height:1.3;
+      margin-bottom:12px;
+    }
+    .rating-section{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+    .stars{ color:#FF9900; font-size:18px; letter-spacing:2px; }
+    .rating-count{ color:#007185; font-size:14px; cursor:pointer; }
+    .rating-count:hover{ text-decoration:underline; }
+    .price-section{ display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
+    .price{ font-size:32px; color:#B12704; font-weight:400; }
+    .price sup{ font-size:16px; vertical-align:super; }
+
+    .unified-buy-box{
+      background:#fff;
+      border:2px solid #FF9900;
+      border-radius:12px;
+      padding:24px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+    .buy-box-title{
+      font-size:18px;
+      font-weight:600;
+      color:#0F1111;
+      margin-bottom:16px;
+      padding-bottom:12px;
+      border-bottom:1px solid #e0e0e0;
+    }
+
+    .stock-status{
+      background:#E7F7F4;
+      color:#067D62;
+      padding:10px 16px;
+      border-radius:6px;
+      font-size:14px;
+      font-weight:600;
+      margin-bottom:16px;
+      text-align:center;
+    }
+    .stock-status.low{ background:#FFF3CD; color:#856404; }
+
+    .variant-section{ margin-bottom:16px; }
+    .variant-label{ font-size:14px; font-weight:600; margin-bottom:10px; color:#0F1111; }
+    .color-swatches{ display:flex; gap:10px; flex-wrap:wrap; }
+    .color-swatch-btn{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:5px;
+      cursor:pointer;
+      padding:8px;
+      border:2px solid #D5D9D9;
+      border-radius:8px;
+      background:#fff;
+      transition:all .2s;
+      min-width:72px;
+    }
+    .color-swatch-btn:hover{ border-color:#FF9900; }
+    .color-swatch-btn.active{ border-color:#FF9900; background:#FFFBF5; }
+    .color-swatch-circle{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      border:1px solid rgba(0,0,0,.12);
+    }
+    .color-swatch-name{ font-size:11px; color:#565959; text-align:center; line-height:1.3; }
+    .color-swatch-price{ font-size:11px; font-weight:600; color:#B12704; }
+
+    .storage-options{ display:flex; gap:8px; flex-wrap:wrap; }
+    .storage-btn{
+      padding:8px 18px;
+      border:1px solid #D5D9D9;
+      border-radius:6px;
+      font-size:13px;
+      font-weight:600;
+      cursor:pointer;
+      background:#fff;
+      transition:all .2s;
+      color:#0F1111;
+    }
+    .storage-btn:hover{ border-color:#FF9900; }
+    .storage-btn.active{ border-color:#FF9900; background:#FFFBF5; }
+
+    .delivery-info{ display:grid; gap:12px; margin-bottom:20px; }
+    .info-row{ display:flex; align-items:flex-start; gap:12px; }
+    .info-icon{ color:#067D62; font-size:20px; flex-shrink:0; }
+    .info-label{ font-size:13px; color:#565959; margin-bottom:2px; }
+    .info-value{ font-size:15px; color:#0F1111; font-weight:500; }
+    .info-value.highlight{ color:#067D62; font-weight:600; }
+
+    .quantity-selector{ display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+    .quantity-selector label{ font-size:14px; font-weight:500; }
+    .quantity-selector select{
+      padding:8px 32px 8px 12px;
+      border:1px solid #D5D9D9;
+      border-radius:8px;
+      font-size:14px;
+      cursor:pointer;
+      background:#F0F2F2;
+    }
+
+    .action-buttons{ display:flex; flex-direction:column; gap:12px; }
+    .btn-primary{
+      background:#FF9900;
+      color:#0F1111;
+      border:none;
+      padding:16px 24px;
+      border-radius:8px;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+      transition:background-color .2s;
+      box-shadow:0 2px 4px rgba(0,0,0,.1);
+    }
+    .btn-primary:hover{ background:#F08804; }
+    .btn-secondary{
+      background:#fff;
+      color:#0F1111;
+      border:1px solid #D5D9D9;
+      padding:14px 24px;
+      border-radius:8px;
+      font-size:15px;
+      font-weight:500;
+      cursor:pointer;
+      transition:all .2s;
+    }
+    .btn-secondary:hover{ background:#F7F8F8; border-color:#0F1111; }
+
+    .additional-actions{ display:flex; gap:8px; margin-top:8px; }
+    .btn-text{
+      background:none;
+      border:none;
+      color:#007185;
+      padding:8px;
+      font-size:14px;
+      cursor:pointer;
+    }
+    .btn-text:hover{ text-decoration:underline; }
+
+    .seller-panel{
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px solid #e0e0e0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:6px 16px;
+      font-size:13px;
+    }
+    .seller-panel-row{ display:flex; gap:6px; }
+    .seller-panel-label{ color:#565959; white-space:nowrap; }
+    .seller-panel-val a{ color:#007185; text-decoration:none; }
+    .seller-panel-val a:hover{ text-decoration:underline; }
+
+    /* Tabs (som du redan hade fixat) */
+    .product-details{
+      background:#fff;
+      border-radius:10px;
+      padding:0;
+      overflow:hidden;
+      border:1px solid #e6e6e6;
+    }
+    .tabs{
+      display:flex;
+      gap:28px;
+      padding:14px 18px 0 18px;
+      background:#fff;
+      border-bottom:1px solid #e6e6e6;
+      overflow-x:auto;
+    }
+    .tab{
+      padding:10px 0 14px 0;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      color:#6b6b6b;
+      border:none;
+      background:none;
+      border-bottom:3px solid transparent;
+      white-space:nowrap;
+    }
+    .tab:hover{ color:#0F1111; }
+    .tab.active{
+      color:#F08804;
+      border-bottom-color:#F08804;
+    }
+    .tab-content{ display:none; padding:22px 22px 26px 22px; }
+    .tab-content.active{ display:block; }
+
+    /* Features cards */
+    .feature-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .feature-card{
+      background:#f3f3f3;
+      border-radius:14px;
+      padding:18px;
+      display:grid;
+      grid-template-columns:42px 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .feature-icon{
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      background:#ededed;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      line-height:1;
+    }
+    .feature-text{ font-size:14px; color:#0F1111; line-height:1.55; }
+    .feature-text strong{ font-weight:800; }
+
+    /* ✅ FIX: Specifikationer-tabellen så den matchar bilden */
+    .specs-title{
+      font-size:22px;
+      font-weight:700;
+      margin: 10px 0 14px 0;
+      color:#0F1111;
+    }
+
+    .spec-table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:14px;
+      background:#fff;
+    }
+
+    .spec-table tr{
+      border-bottom:1px solid #e6e6e6;
+    }
+
+    .spec-table tr:nth-child(even){
+      background:#f6f6f6;
+    }
+
+    .spec-table td{
+      padding:14px 16px;
+      vertical-align:middle;
+    }
+
+    .spec-table td:first-child{
+      width:30%;
+      font-weight:700;
+      color:#2b2b2b;
+      white-space:nowrap;
+    }
+
+    .spec-table td:last-child{
+      color:#0F1111;
+    }
+
+    /* =========================================================
+       ✅ FIX: Kundrecensioner (matchar bilden du skickade)
+       ========================================================= */
+    .review-summary{
+      display:grid;
+      grid-template-columns:240px 1fr;
+      gap:36px;
+      align-items:start;
+      margin-bottom:22px;
+    }
+    .rating-breakdown{
+      text-align:center;
+      padding-top:6px;
+    }
+    .avg-rating{
+      font-size:56px;
+      font-weight:300;
+      line-height:1;
+      color:#0F1111;
+      margin-bottom:6px;
+    }
+    .rating-breakdown .stars{
+      font-size:20px;
+      letter-spacing:2px;
+      margin-bottom:6px;
+      display:inline-block;
+    }
+    .rating-breakdown .rating-count-small{
+      color:#565959;
+      font-size:13px;
+      margin-top:2px;
+    }
+
+    .rating-bars{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding-top:10px;
+    }
+    .rating-bar-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:13px;
+      color:#0F1111;
+    }
+    .rating-bar-label{
+      width:78px;
+      color:#0F1111;
+      white-space:nowrap;
+    }
+    .rating-bar{
+      flex:1;
+      height:14px;
+      background:#f0f0f0;
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .rating-bar-fill{
+      height:100%;
+      background:#FF9900;
+      border-radius:999px;
+    }
+    .rating-bar-pct{
+      width:48px;
+      text-align:right;
+      color:#0F1111;
+      white-space:nowrap;
+    }
+
+    .review-card{
+      border:1px solid #e0e0e0;
+      border-radius:8px;
+      padding:18px;
+      margin-bottom:16px;
+      background:#fff;
+    }
+    .review-card:hover{ box-shadow:0 2px 8px rgba(0,0,0,.08); }
+
+    .review-header{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:10px;
+      align-items:flex-start;
+    }
+    .review-header-left .stars{
+      font-size:16px;
+      letter-spacing:2px;
+      margin-bottom:4px;
+      display:block;
+    }
+    .review-title{
+      font-weight:700;
+      color:#0F1111;
+      line-height:1.25;
+    }
+    .review-date{
+      color:#565959;
+      font-size:13px;
+      white-space:nowrap;
+      padding-top:2px;
+    }
+    .review-body{
+      color:#0F1111;
+      font-size:14px;
+      line-height:1.6;
+    }
+    .review-meta{
+      margin-top:10px;
+      color:#565959;
+      font-size:13px;
+    }
+
+    /* =========================================================
+       ✅ FIX: Frågor & svar (matchar bilden du skickade)
+       ========================================================= */
+    .qa-list{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      margin-top:4px;
+    }
+    .qa-item{
+      background:#f4f4f4;
+      border:1px solid #e7e7e7;
+      border-radius:14px;
+      padding:18px 20px;
+    }
+    .qa-line{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:15px;
+      color:#0F1111;
+    }
+    .qa-line + .qa-line{ margin-top:10px; }
+    .qa-tag{
+      font-weight:800;
+      min-width:22px;
+      line-height:1.2;
+    }
+    .qa-tag.q{ color:#F08804; }
+    .qa-tag.a{ color:#067D62; }
+    .qa-text{ flex:1; }
+    .qa-meta{
+      margin-top:12px;
+      color:#6b6b6b;
+      font-size:13px;
+    }
+
+    /* Banner/related */
+    .comparison-banner{
+      background:linear-gradient(135deg,#667eea 0%, #764ba2 100%);
+      color:#fff;
+      padding:20px;
+      border-radius:8px;
+      margin:20px 0;
+      text-align:center;
+    }
+    .comparison-banner h3{ margin-bottom:10px; font-size:20px; }
+    .comparison-banner button{
+      background:#fff;
+      color:#667eea;
+      border:none;
+      padding:12px 24px;
+      border-radius:6px;
+      font-weight:600;
+      cursor:pointer;
+      font-size:14px;
+    }
+    .comparison-banner button:hover{ background:#f0f0f0; }
+
+    /* =========================================================
+       ✅ Produkter relaterade till denna artikel (matchar bilden)
+       (Endast detta block är tillagt/justerat)
+       ========================================================= */
+    .related-products{
+      background:#fff;
+      padding:26px 26px 22px 26px;
+      margin:20px 0;
+      border-radius:10px;
+      border:1px solid #e6e6e6;
+    }
+    .section-title{
+      font-size:28px;
+      font-weight:800;
+      color:#0F1111;
+      margin-bottom:14px;
+      padding-bottom:0;
+      border-bottom:none;
+    }
+    .rp-divider{
+      height:1px;
+      background:#e6e6e6;
+      width:100%;
+      margin:0 0 18px 0;
+    }
+
+    .product-carousel{
+      position:relative;
+      display:flex;
+      align-items:stretch;
+      gap:0;
+    }
+
+    .carousel-btn{
+      background:#fff;
+      border:1px solid #D5D9D9;
+      border-radius:50%;
+      width:56px;
+      height:56px;
+      font-size:28px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      transition:all .2s;
+      box-shadow:0 2px 8px rgba(0,0,0,.12);
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:5;
+    }
+    .carousel-btn:hover{ background:#F7F8F8; border-color:#0F1111; }
+    .carousel-btn.prev{ left:-10px; }
+    .carousel-btn.next{ right:-10px; }
+
+    .product-grid{
+      display:grid;
+      grid-auto-flow:column;
+      grid-auto-columns:minmax(260px, 1fr);
+      gap:18px;
+      overflow-x:auto;
+      scroll-behavior:smooth;
+      padding:6px 56px; /* luft så pilarna inte täcker korten */
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+    .product-grid::-webkit-scrollbar{ height:10px; }
+    .product-grid::-webkit-scrollbar-thumb{ background:#d9d9d9; border-radius:999px; }
+    .product-grid::-webkit-scrollbar-track{ background:#f3f3f3; border-radius:999px; }
+
+    .product-card{
+      background:#fff;
+      border:1px solid #e0e0e0;
+      border-radius:10px;
+      padding:14px 14px 16px 14px;
+      transition:box-shadow .2s, transform .2s;
+      cursor:pointer;
+      display:flex;
+      flex-direction:column;
+      scroll-snap-align:start;
+      min-height:320px;
+    }
+    .product-card:hover{
+      box-shadow:0 6px 18px rgba(0,0,0,.10);
+      transform:translateY(-2px);
+    }
+
+    .rp-imgwrap{
+      position:relative;
+      width:100%;
+      height:190px;
+      background:#f8f8f8;
+      border-radius:8px;
+      border:1px solid #ededed;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      margin-bottom:12px;
+    }
+    .rp-imgwrap img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+    .rp-imglabel{
+      position:absolute;
+      top:10px;
+      left:10px;
+      background:rgba(255,255,255,.92);
+      border:1px solid #e6e6e6;
+      border-radius:8px;
+      padding:6px 10px;
+      font-size:14px;
+      font-weight:700;
+      color:#0F1111;
+    }
+
+    .product-card-content{ flex:1; display:flex; flex-direction:column; }
+    .product-card-title{
+      font-size:15px;
+      color:#0F1111;
+      margin-bottom:10px;
+      line-height:1.4;
+      overflow:hidden;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      min-height:44px;
+      font-weight:600;
+    }
+    .product-card-rating{ display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .product-card-rating .stars{ color:#FF9900; font-size:16px; letter-spacing:2px; }
+    .product-card-rating .rating-text{ font-size:13px; color:#565959; }
+    .product-card-price{
+      font-size:22px;
+      color:#B12704;
+      font-weight:800;
+      margin-top:auto;
+    }
+    .product-card-price sup{ font-size:12px; vertical-align:super; }
+
+    /* Design note */
+    .design-note{
+      background:#E7F7F4;
+      border-left:4px solid #067D62;
+      padding:12px;
+      margin:20px 0;
+      font-size:14px;
+      border-radius:4px;
+    }
+    .design-note strong{ color:#067D62; }
+
+    /* =========================================================
+       ✅ NYTT: "Vilken iPhone passar dig bäst?" (under Om denna artikel)
+       ========================================================= */
+    .which-iphone{
+      background:#fff;
+      border-radius:8px;
+      padding:28px 32px;
+      margin-bottom:20px;
+      border:1px solid #e6e6e6;
+    }
+    .which-iphone-title{
+      font-size:34px;
+      font-weight:800;
+      color:#0F1111;
+      margin-bottom:18px;
+    }
+    .which-iphone-grid{
+      display:flex;
+      gap:28px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .which-iphone-card{
+      flex:1;
+      min-width:210px;
+      max-width:260px;
+      text-align:center;
+      padding-top:8px;
+    }
+    .which-iphone-card h3{
+      font-size:16px;
+      font-weight:700;
+      color:#0F1111;
+      margin-bottom:12px;
+    }
+    .which-iphone-img{
+      width:100%;
+      height:210px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:10px;
+    }
+    .which-iphone-img img{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      display:block;
+    }
+    .which-iphone-dots{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      margin:10px 0 10px 0;
+    }
+    .which-iphone-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      border:1px solid rgba(0,0,0,.18);
+    }
+    .which-iphone-colors{
+      font-size:13px;
+      color:#565959;
+      line-height:1.4;
+    }
+
+    /* =========================================================
+       ✅ NYTT: Jämförelsetabell (ska ligga under "Vilken iPhone passar dig bäst?")
+       ========================================================= */
+    .iphone-compare{
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius:8px;
+      padding:22px 22px 18px 22px;
+      margin-bottom:20px;
+    }
+    .iphone-compare-title{
+      text-align:center;
+      font-size:22px;
+      font-weight:800;
+      color:#0F1111;
+      margin:8px 0 18px 0;
+    }
+    .compare-scroll{
+      width:100%;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    .compare-table{
+      width:100%;
+      min-width:980px;
+      border-collapse:collapse;
+      table-layout:fixed;
+      font-size:14px;
+      background:#fff;
+    }
+    .compare-table th,
+    .compare-table td{
+      border:1px solid #e6e6e6;
+      padding:14px 14px;
+      vertical-align:middle;
+      text-align:center;
+    }
+    .compare-table thead th{
+      background:#fff;
+      font-weight:700;
+    }
+    .compare-table .row-label{
+      text-align:left;
+      width:180px;
+      letter-spacing:.08em;
+      font-size:13px;
+      font-weight:800;
+      color:#565959;
+      background:#fff;
+    }
+
+    .compare-head{
+      height:150px;
+      padding:18px 14px;
+    }
+    .compare-phone{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+    }
+    .compare-phone img{
+      width:78px;
+      height:78px;
+      object-fit:contain;
+      display:block;
+    }
+    .compare-phone-name{
+      color:#007185;
+      font-weight:800;
+      font-size:16px;
+    }
+
+    /* markerad kolumn (som i bilden) */
+    .compare-table .highlight-col{
+      background:#eef7ff;
+    }
+    .compare-table thead .highlight-col{
+      outline:2px solid #0a6aa6;
+      outline-offset:-2px;
+    }
+
+    .compare-price{
+      color:#B12704;
+      font-weight:800;
+      font-size:16px;
+    }
+    .compare-price.normal{
+      color:#0F1111;
+      font-weight:700;
+    }
+    .compare-discount{
+      color:#067D62;
+      font-weight:800;
+      margin-right:8px;
+    }
+    .compare-check{
+      color:#067D62;
+      font-weight:900;
+      font-size:18px;
+      line-height:1;
+    }
+    .compare-rating{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .compare-rating .stars{
+      font-size:16px;
+      letter-spacing:2px;
+    }
+    .compare-rating a{
+      color:#007185;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .compare-rating a:hover{ text-decoration:underline; }
+
+    /* =========================================================
+       ✅ NYTT: Sektionen under "Jämför Apple iPhone-produkter" (matchar bilden)
+       ========================================================= */
+    .apple-below-compare{
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius:8px;
+      padding:34px 28px;
+      margin-bottom:20px;
+    }
+    .apple-below-compare h2{
+      text-align:center;
+      font-size:30px;
+      font-weight:800;
+      color:#0F1111;
+      margin:10px 0 22px 0;
+    }
+    .apple-card-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+    .apple-card{
+      background:#f3f3f3;
+      border:1px solid #ededed;
+      border-radius:16px;
+      padding:26px 22px;
+      text-align:center;
+    }
+    .apple-card-icon{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      background:#ededed;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 12px auto;
+      font-size:22px;
+      line-height:1;
+    }
+    .apple-card-title{
+      font-size:16px;
+      font-weight:800;
+      color:#0F1111;
+      margin-bottom:8px;
+    }
+    .apple-card-text{
+      font-size:13px;
+      color:#0F1111;
+      line-height:1.55;
+      max-width:520px;
+      margin:0 auto;
+    }
+
+    /* =========================================================
+       ✅ NYTT: Footer (ska ligga sist i sidan, matchar bilden)
+       ========================================================= */
+    .amz-footer{
+      margin-top:24px;
+      background:#fff;
+      border-top:1px solid #e6e6e6;
+    }
+    /* BACK TO TOP — REAL AMAZON */
+    .amz-footer-toplink{
+      text-align:center;
+      padding:14px 12px;
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:.04em;
+      color:#DDD;
+      background:#37475A;      /* Amazon top footer color */
+      border:none;
+      cursor:pointer;
+      transition:background .15s ease, color .15s ease;
+    }
+
+    .amz-footer-toplink:hover{
+      background:#485769;      /* hover som Amazon */
+      color:#FFF;
+    }
+    .amz-footer-inner{
+      max-width:1400px;
+      margin:0 auto;
+      padding:26px 20px 18px 20px;
+    }
+
+    .amz-footer-cols{
+      display:grid;
+      grid-template-columns:1.1fr 1fr 1fr .9fr;
+      gap:26px;
+      align-items:start;
+    }
+    .amz-foot-col h4{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      font-weight:800;
+      margin-bottom:10px;
+      color:#0F1111;
+    }
+    .amz-foot-btnlist{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+   /* AMAZON STYLE BUTTONS */
+    .amz-foot-btn{
+      background:transparent;
+      border:1px solid #44566c;
+      border-radius:4px;
+      padding:8px 10px;
+      font-size:12px;
+      color:#DDD;
+      cursor:pointer;
+      text-align:left;
+      transition:all .15s ease;
+    }
+
+    .amz-foot-btn:hover{
+      border-color:#FF9900;
+      color:#FFF;
+      background:#2f3f52;
+    }
+    .amz-foot-benefits{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:2px;
+    }
+    .amz-foot-benefit{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:12px;
+      color:#0F1111;
+    }
+    .amz-foot-benefit .ic{
+      width:20px;height:20px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;
+    }
+
+    .amz-foot-social{
+      margin-top:14px;
+      font-size:11px;
+      font-weight:800;
+      color:#565959;
+    }
+    .amz-social-row{
+      display:flex;
+      gap:8px;
+      margin-top:8px;
+    }
+    .amz-social{
+      width:28px;height:28px;
+      border-radius:6px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .amz-social.fb{ background:#1877F2; }
+    .amz-social.ig{ background:linear-gradient(135deg,#f58529 0%, #dd2a7b 45%, #8134af 100%); }
+    .amz-social.yt{ background:#111; }
+
+    .amz-footer-mid{
+      border-top:1px solid #e6e6e6;
+      margin-top:22px;
+      padding-top:18px;
+      display:grid;
+      grid-template-columns:1.1fr 1fr 1fr;
+      gap:26px;
+      align-items:start;
+    }
+    .amz-mid-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      font-weight:900;
+      color:#0F1111;
+      margin-bottom:10px;
+      letter-spacing:.02em;
+    }
+    .amz-chip-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    /* AMAZON SMALL TAGS */
+.amz-chip{
+  background:transparent;
+  border:1px solid #55697f;
+  border-radius:4px;
+  padding:7px 11px;
+  font-size:12px;
+  color:#E6E6E6;
+  cursor:pointer;
+  transition:.15s;
+}
+
+    .amz-chip:hover{
+      border-color:#FF9900;
+      color:#FFF;
+      background:#2f3f52;
+    }
+
+    .amz-app-badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .amz-badge{
+      background:#111;
+      color:#fff;
+      border-radius:8px;
+      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:170px;
+      cursor:pointer;
+    }
+    .amz-badge small{ display:block; font-size:10px; opacity:.85; line-height:1; }
+    .amz-badge strong{ display:block; font-size:14px; line-height:1.1; }
+
+    /* AMAZON DARK STRIP */
+    .amz-footer-subs{
+      background:#131A22;
+      border-top:1px solid #3a4553;
+      padding:22px 0;
+    }
+    .amz-subs-inner{
+      max-width:1400px;
+      margin:0 auto;
+      padding:0 20px;
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      gap:12px;
+    }
+   /* AMAZON SERVICES (IMDb AWS etc) */
+    .amz-subs-card{
+      background:transparent;
+      border:1px solid #3a4553;
+      border-radius:4px;
+      padding:14px 16px;
+      color:#DDD;
+      transition:all .15s ease;
+    }
+
+    .amz-subs-card strong{
+      color:#FFF;
+      font-weight:700;
+    }
+
+    .amz-subs-card span{
+      color:#999;
+    }
+
+    .amz-subs-card:hover{
+      border-color:#FF9900;
+      background:#232F3E;
+    }
+    .amz-footer-bottom{
+      padding:18px 0 26px 0;
+      background:#fff;
+      border-top:1px solid #e6e6e6;
+    }
+    .amz-bottom-inner{
+      max-width:1400px;
+      margin:0 auto;
+      padding:0 20px;
+      text-align:center;
+    }
+    /* ===== AMAZON LOGO REAL ===== */
+    .amz-bottom-logo{
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight:700;
+      font-size:26px;
+      color:#FFFFFF;
+      position:relative;
+      display:inline-block;
+      letter-spacing:-0.6px;
+    }
+
+    .amz-bottom-logo .se{
+      font-size:13px;
+      margin-left:2px;
+      position:relative;
+      top:-7px;
+      font-weight:600;
+    }
+
+    /* Smile pil */
+    .amz-bottom-smile{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-6px;
+      height:12px;
+    }
+
+    .amz-bottom-smile .arc{
+      width:74%;
+      height:8px;
+      border:3px solid #FF9900;   /* AMAZON ORANGE */
+      border-color:transparent transparent #FF9900 transparent;
+      border-radius:0 0 70% 70%;
+      margin:0 auto;
+      position:relative;
+    }
+
+    .amz-bottom-smile .arc:after{
+      content:"";
+      position:absolute;
+      right:-7px;
+      bottom:-4px;
+      width:0;height:0;
+      border-top:5px solid transparent;
+      border-bottom:5px solid transparent;
+      border-left:9px solid #FF9900;
+      transform:rotate(-25deg);
+    }
+    .amz-bottom-pills{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:10px 0 10px 0;
+    }
+    .amz-pill{
+      background:#f7f7f7;
+      border:1px solid #e2e2e2;
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:11px;
+      color:#0F1111;
+      cursor:pointer;
+      user-select:none;
+    }
+    .amz-copy{
+      font-size:11px;
+      color:#565959;
+      margin-top:10px;
+    }
+
+    @media (max-width:1000px){
+      .amz-footer-cols{ grid-template-columns:1fr 1fr; }
+      .amz-footer-mid{ grid-template-columns:1fr; }
+      .amz-subs-inner{ grid-template-columns:1fr 1fr; }
+    }
+
+    @media (max-width:768px){
+      .product-section{ grid-template-columns:1fr; }
+      .review-summary{ grid-template-columns:1fr; }
+      .feature-grid{ grid-template-columns:1fr; }
+      .spec-table td:first-child{ width:40%; }
+      .spec-table td{ padding:12px 12px; }
+
+      /* related products */
+      .carousel-btn{ display:none; }
+      .product-grid{ padding:6px 6px; grid-auto-columns:minmax(240px, 1fr); }
+
+      .which-iphone-title{ font-size:26px; }
+      .which-iphone-grid{ gap:18px; justify-content:flex-start; }
+      .which-iphone-card{ max-width:none; }
+      .which-iphone-img{ height:190px; }
+
+      /* new section grid */
+      .apple-card-grid{ grid-template-columns:1fr; }
+      .apple-below-compare h2{ font-size:24px; }
+    }
+
+    @media (max-width:768px){
+      .unified-buy-box.sticky{
+        position:fixed;
+        bottom:0; left:0; right:0;
+        border-radius:16px 16px 0 0;
+        box-shadow:0 -4px 12px rgba(0,0,0,.15);
+        z-index:1000;
+      }
+    }
+    /* ===== AMAZON OFFICIAL COLORS ===== */
+
+    /* Hela footer */
+    .amz-footer{
+      background:#232F3E !important;
+      color:#DDD !important;
+    }
+
+    /* Rubriker */
+    .amz-footer h4{
+      color:#FFF !important;
+    }
+
+    /* Text */
+    .amz-footer span,
+    .amz-footer div,
+    .amz-footer button{
+      color:#DDD !important;
+    }
+
+    /* Hover som Amazon */
+    .amz-footer button:hover{
+      color:#FFF !important;
+    }
+
+    /* Linjen i mitten */
+    .amz-footer-mid{
+      border-top:1px solid #3A4553 !important;
+    }
+
+    /* Nedre mörkare delen */
+    .amz-footer-bottom{
+      background:#131A22 !important;
+      border-top:1px solid #3A4553 !important;
+    }
+
+    /* Länkar/piller */
+    .amz-pill{
+      background:transparent !important;
+      border:1px solid #555 !important;
+      color:#DDD !important;
+    }
+    .amz-pill:hover{
+      border-color:#FFF !important;
+      color:#FFF !important;
+    }
+    /* Related Products Section */
+    .related-products {
+      background-color: white;
+      padding: 24px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: #0F1111;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .product-carousel {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .carousel-btn {
+      background-color: white;
+      border: 1px solid #D5D9D9;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .carousel-btn:hover {
+      background-color: #F7F8F8;
+      border-color: #0F1111;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      flex: 1;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 4px;
+    }
+
+    .product-card {
+      background-color: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 16px;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .product-card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      margin-bottom: 12px;
+      background-color: #f8f8f8;
+      border-radius: 4px;
+    }
+
+    .product-card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card-title {
+      font-size: 14px;
+      color: #0F1111;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      min-height: 40px;
+    }
+
+    .product-card-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .product-card-rating .stars {
+      color: #FF9900;
+      font-size: 14px;
+    }
+
+    .product-card-rating .rating-text {
+      font-size: 12px;
+      color: #565959;
+    }
+
+    .product-card-price {
+      font-size: 18px;
+      color: #B12704;
+      font-weight: 600;
+      margin-top: auto;
+    }
+
+    .product-card-price sup {
+      font-size: 12px;
+    }
+    #compareAnchor{
+      scroll-margin-top: 90px; /* justera vid behov */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <div class="amz-nav-top">
+
+    <!-- Logo -->
+    <div class="amz-logo">
+      <div style="display:flex;align-items:flex-end;gap:0;">
+        <span class="amz-logo-text">amazon</span><span class="amz-logo-se">.se</span>
+      </div>
+
+      <!-- smile -->
+      <div style="position:absolute; bottom:2px; left:4px; right:4px; height:10px; overflow:hidden;">
+        <div style="
+          width:78%;
+          height:8px;
+          border:3px solid #FF9900;
+          border-color:transparent transparent #FF9900 transparent;
+          border-radius:0 0 60% 60%;
+          margin:0 auto;
+          position:relative;">
+          <div style="
+            position:absolute;
+            right:-5px;
+            bottom:-3px;
+            width:0;height:0;
+            border-top:5px solid transparent;
+            border-bottom:5px solid transparent;
+            border-left:7px solid #FF9900;
+            transform:rotate(-30deg);
+          "></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deliver to -->
+    <div class="amz-deliver">
+      <div class="amz-deliver-top">
+        <svg width="12" height="14" viewBox="0 0 12 14" fill="#ccc"><path d="M6 0C3.8 0 2 1.8 2 4c0 3 4 10 4 10s4-7 4-10c0-2.2-1.8-4-4-4zm0 5.5C5.2 5.5 4.5 4.8 4.5 4S5.2 2.5 6 2.5 7.5 3.2 7.5 4 6.8 5.5 6 5.5z"/></svg>
+        Levererar till 111 64 Stockholm
+      </div>
+      <div class="amz-deliver-bottom">Uppdatera plats</div>
+    </div>
+
+    <!-- Search -->
+    <div class="amz-search">
+      <select class="amz-search-cat">
+        <option>Alla kategorier</option>
+        <option selected>Elektronik</option>
+        <option>Mobiltelefoner</option>
+        <option>Apple</option>
+      </select>
+      <input class="amz-search-input" type="text" value="iPhone 17 Pro Max" placeholder="Sök i Amazon">
+      <button class="amz-search-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Lang -->
+    <div class="amz-lang">🇸🇪 SV ▾</div>
+
+    <!-- Account -->
+    <div class="amz-nav-link">
+      <span class="amz-nav-link-top">Hej, logga in</span>
+      <span class="amz-nav-link-bot">Konto &amp; listor ▾</span>
+    </div>
+
+    <!-- Returns -->
+    <div class="amz-nav-link">
+      <span class="amz-nav-link-top">Returer</span>
+      <span class="amz-nav-link-bot">&amp; beställningar</span>
+    </div>
+
+    <!-- Cart -->
+    <div class="amz-cart">
+      <div>
+        <div class="amz-cart-count">0</div>
+        <svg width="38" height="34" viewBox="0 0 38 34" fill="none">
+          <path d="M1 1h5l3.5 18h20l3-12H9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="15" cy="31" r="2" fill="white"/>
+          <circle cx="28" cy="31" r="2" fill="white"/>
+        </svg>
+      </div>
+      <span class="amz-cart-label">Kundvagn</span>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="amz-nav-bot">
+    <a class="amz-nav-bot-link all-menu">
+      <svg width="18" height="14" viewBox="0 0 18 14" fill="white">
+        <rect y="0" width="18" height="2"/><rect y="6" width="18" height="2"/><rect y="12" width="18" height="2"/>
+      </svg>
+      Alla
+    </a>
+    <a class="amz-nav-bot-link">Bästsäljare</a>
+    <a class="amz-nav-bot-link">Elektronik</a>
+    <a class="amz-nav-bot-link">Presentkort</a>
+    <a class="amz-nav-bot-link">Hem &amp; kök</a>
+    <a class="amz-nav-bot-link">Leksaker &amp; spel</a>
+    <a class="amz-nav-bot-link">TV-spel &amp; konsoler</a>
+    <a class="amz-nav-bot-link">Böcker</a>
+    <a class="amz-nav-bot-link">Bygg, el &amp; verktyg</a>
+    <div class="amz-nav-bot-divider"></div>
+    <div class="amz-nav-bot-promo">
+      <span class="ball">⚽</span>
+      <span class="promo-label">MCI – NEW</span>
+      <span class="promo-time">Lördag från 20:30</span>
+    </div>
+    <span class="amz-prime-link">Amazon Prime</span>
+  </div>
+
+  <!-- model nav -->
+  <div class="model-nav">
+    <div class="model-nav-content">
+      <div class="model-nav-title">iPhone</div>
+      <div class="model-nav-items">
+        <a class="model-nav-item active" href="#">
+          <img src="https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg" alt="iPhone 17 Pro Max">
+          iPhone 17 Pro Max
+        </a>
+        <a class="model-nav-item" href="#">
+          <img src="https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg" alt="iPhone 17 Pro">
+          iPhone 17 Pro
+        </a>
+        <a class="model-nav-item" href="#">
+          <img src="https://www.apple.com/v/iphone-17/d/images/overview/welcome/hero_startframe__fslo8k8lane6_xlarge.jpg" alt="iPhone Air">
+          iPhone Air
+        </a>
+        <a class="model-nav-item" href="#">
+          <img src="https://www.apple.com/v/iphone-17/d/images/overview/highlights/ceramic-shield/highlights_ceramic_shield_endframe__b8x1kxkbto6a_large.jpg" alt="iPhone 17">
+          iPhone 17
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="design-note">
+      <strong>Designprincip tillämpad:</strong> Konsoliderad informationsarkitektur — all köpkritisk information (pris, leverans, retur, lager, färg, lagring) är nu grupperad i en enhetlig Buy Box.
+    </div>
+
+    <div class="product-section">
+
+      <!-- Left images -->
+      <div class="product-image-section">
+        <div class="main-image" id="mainImage">
+          <img src="https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg"
+               alt="iPhone 17 Pro Max Cosmic Orange" id="mainImageElement">
+          <div class="zoom-label">🔍 Zooma</div>
+        </div>
+        <div class="thumbnail-container">
+          <div class="thumbnail active" onclick="changeImage('https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg', this)">
+            <img src="https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg" alt="Framsida & baksida">
+          </div>
+          <div class="thumbnail" onclick="changeImage('https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-camera-close-up-250909_big.jpg.large.jpg', this)">
+            <img src="https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-camera-close-up-250909_big.jpg.large.jpg" alt="Kamerasystem närbild">
+          </div>
+          <div class="thumbnail" onclick="changeImage('https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg', this)">
+            <img src="https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg" alt="Alla tre färger">
+          </div>
+          <div class="thumbnail" onclick="changeImage('./images/whats-in-the-box.jpg', this)">
+            <img src="./images/whats-in-the-box.jpg" alt="What's in the box">
+          </div>
+        </div>
+      </div>
+
+      <!-- Right info -->
+      <div class="product-info-section">
+
+        <div class="product-summary">
+          <a class="brand-link" href="#">Besök Apple Store</a>
+          <h1 class="product-title">Apple iPhone 17 Pro Max 256 GB: 6,9-tumsskärm med ProMotion, A19 Pro-chip, bästa batteritiden någonsin på en iPhone, Fusion-proffskamerasystem, Center Stage-skärmkamera — kosmiskt orange</h1>
+
+          <div class="rating-section">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-count">4.3 (152 betyg)</span>
+          </div>
+
+          <div class="price-section">
+            <span class="price">16 981<sup>00</sup> kr</span>
+          </div>
+        </div>
+
+        <div class="unified-buy-box">
+          <div class="buy-box-title">✓ Köpinformation</div>
+
+          <div class="stock-status low">⚠️ Endast 7 kvar i lager — beställ snart</div>
+
+          <div class="variant-section">
+            <div class="variant-label">Färg: <span id="color-label">Kosmiskt orange</span></div>
+            <div class="color-swatches">
+              <button class="color-swatch-btn" onclick="selectColor(this,'Deep Blue','#1a2a4e','16 874')">
+                <div class="color-swatch-circle" style="background:#1a2a4e;"></div>
+                <div class="color-swatch-name">Deep Blue</div>
+                <div class="color-swatch-price">16 874 kr</div>
+              </button>
+              <button class="color-swatch-btn active" onclick="selectColor(this,'Kosmiskt orange','#E8640A','16 981')">
+                <div class="color-swatch-circle" style="background:#E8640A;"></div>
+                <div class="color-swatch-name">Kosmiskt orange</div>
+                <div class="color-swatch-price">16 981 kr</div>
+              </button>
+              <button class="color-swatch-btn" onclick="selectColor(this,'Silver','#d0d0d0','16 981')">
+                <div class="color-swatch-circle" style="background:#d0d0d0;"></div>
+                <div class="color-swatch-name">Silver</div>
+                <div class="color-swatch-price">16 981 kr</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="variant-section">
+            <div class="variant-label">Storlek: <span id="storage-label">256 GB</span></div>
+            <div class="storage-options">
+              <button class="storage-btn active" onclick="selectStorage(this,'256 GB','16 981')">256 GB</button>
+              <button class="storage-btn" onclick="selectStorage(this,'512 GB','18 495')">512 GB</button>
+              <button class="storage-btn" onclick="selectStorage(this,'1 TB','20 995')">1 TB</button>
+              <button class="storage-btn" onclick="selectStorage(this,'2 TB','24 995')">2 TB</button>
+            </div>
+          </div>
+
+          <div class="delivery-info">
+            <div class="info-row">
+              <span class="info-icon">🚚</span>
+              <div class="info-content">
+                <div class="info-label">Leverans</div>
+                <div class="info-value highlight">GRATIS leverans lördag, 21 februari</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">⚡</span>
+              <div class="info-content">
+                <div class="info-label">Snabbast möjliga</div>
+                <div class="info-value highlight">Idag — beställ inom 2 tim</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">↩️</span>
+              <div class="info-content">
+                <div class="info-label">Returer</div>
+                <div class="info-value">Kan returneras inom 30 dagar från mottagandet</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">🔒</span>
+              <div class="info-content">
+                <div class="info-label">Betalning</div>
+                <div class="info-value">Säker transaktion</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quantity-selector">
+            <label for="qty">Antal:</label>
+            <select id="qty">
+              <option>1</option><option>2</option><option>3</option>
+              <option>4</option><option>5</option>
+            </select>
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-primary" onclick="this.textContent='✓ Tillagd i kundvagnen'; setTimeout(()=>this.textContent='Lägg till i kundvagnen',2500)">Lägg till i kundvagnen</button>
+            <button class="btn-secondary" id="buyNowBtn" onclick="document.getElementById('buyNowBtn').textContent='⏳ Omdirigerar...'; document.getElementById('buyNowBtn').disabled=true; setTimeout(()=>window.location.href='checkout_new.html', 600)">Köp nu</button>
+          </div>
+
+          <div class="additional-actions">
+            <button class="btn-text">❤️ Lägg till i listan</button>
+            <button class="btn-text">🎁 Lägg till presentalternativ</button>
+          </div>
+
+          <div class="seller-panel">
+            <div class="seller-panel-row">
+              <span class="seller-panel-label">Avsändare / Säljare</span>
+              <span class="seller-panel-val"><a href="#">Amazon</a></span>
+            </div>
+            <div class="seller-panel-row">
+              <span class="seller-panel-label">Returer</span>
+              <span class="seller-panel-val"><a href="#">Kan returneras inom 30 dagar från mottagandet</a></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="comparison-banner">
+      <h3>Jämför med liknande produkter</h3>
+      <button id="compareBtn">Visa jämförelsetabell — iPhone 17 Pro Max vs Pro vs Air</button>
+    </div>
+    <!-- Tabs -->
+    <div class="product-details">
+      <div class="tabs">
+        <button class="tab active" onclick="showTab('features', event)">Viktiga funktioner</button>
+        <button class="tab" onclick="showTab('specs', event)">Specifikationer</button>
+        <button class="tab" onclick="showTab('reviews', event)">Kundrecensioner (152)</button>
+        <button class="tab" onclick="showTab('qa', event)">Frågor &amp; svar</button>
+      </div>
+
+      <!-- Features -->
+      <div id="features" class="tab-content active">
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-text">
+              <strong>A19 Pro-chip</strong> — 6-kärnig CPU, 6-kärnig GPU med Neural Accelerators, 16-kärnig Neural Engine. 40% bättre sustained prestanda och vapor chamber för kylning.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📷</div>
+            <div class="feature-text">
+              <strong>Tre 48 MP-kameror</strong> — Huvud (f/1.78, OIS), Ultravidvinkel (f/2.2), Tetraprism-telefoto (f/2.8, 8× optisk zoom vid 200 mm). Motsvarar 8 proobjektiv.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🤳</div>
+            <div class="feature-text">
+              <strong>18 MP Center Stage-frontkamera</strong> — Kvadratisk sensor med Dual Capture (front + bak samtidigt), selfievideo i liggande utan att vrida telefonen.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <div class="feature-text">
+              <strong>6.9" Super Retina XDR OLED</strong> — 2868 × 1320, 460 ppi. ProMotion upp till 120 Hz, Always-On, 3 000 nit toppljusstyrka.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎬</div>
+            <div class="feature-text">
+              <strong>ProRes RAW, Apple Log 2 &amp; genlock</strong> — branschens första smartphone med dessa proffsfunktioner.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔋</div>
+            <div class="feature-text">
+              <strong>Bästa batteritiden</strong> — 50% laddning på 20 min med 40W adapter. Qi2 MagSafe 25W.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <div class="feature-text">
+              <strong>Ceramic Shield 2</strong> — 3× bättre reptålighet fram, 4× bättre spricktålighet bak. IP68.
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📡</div>
+            <div class="feature-text">
+              <strong>Apple N1 nätverkschip</strong> — Wi-Fi 7, Bluetooth 6.0, Thread, 5G. USB-C 3.2 Gen 2.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- ✅ Specs -->
+      <div id="specs" class="tab-content">
+        <div class="specs-title">Tekniska specifikationer</div>
+        <table class="spec-table">
+          <tr><td>Varumärke</td><td>Apple</td></tr>
+          <tr><td>Operativsystem</td><td>iOS 26 (Liquid Glass)</td></tr>
+          <tr><td>Skärmstorlek</td><td>6.9 tum Super Retina XDR OLED, 2868 × 1320, 460 ppi, ProMotion 1–120 Hz, Always-On</td></tr>
+          <tr><td>Processor</td><td>Apple A19 Pro (3 nm), 6-kärnig CPU, 6-kärnig GPU, 16-kärnig Neural Engine, 12 GB RAM</td></tr>
+          <tr><td>Minneslagringskapacitet</td><td>256 GB / 512 GB / 1 TB / 2 TB</td></tr>
+          <tr><td>Kameror (baksida)</td><td>48 MP Huvud f/1.78 OIS · 48 MP Ultravidvinkel f/2.2 · 48 MP Telefoto f/2.8 tetraprism 8× optisk zoom 200 mm</td></tr>
+          <tr><td>Kamera (framsida)</td><td>18 MP Center Stage, Dual Capture, 4K 60fps, kvadratisk sensor</td></tr>
+          <tr><td>Video</td><td>4K 120fps Dolby Vision, ProRes RAW, Apple Log 2, genlock</td></tr>
+          <tr><td>Batteri</td><td>Bästa batteritiden någonsin i en iPhone · 50% på 20 min med 40W adapter</td></tr>
+          <tr><td>Nätverkschip</td><td>Apple N1 — Wi-Fi 7, Bluetooth 6.0, Thread</td></tr>
+          <tr><td>Anslutning</td><td>5G, Wi-Fi 7, Bluetooth 6.0, NFC, Ultra Wideband, USB-C 3.2, eSIM</td></tr>
+          <tr><td>Hållbarhet</td><td>IP68 (6 m · 30 min), Ceramic Shield 2 fram + bak</td></tr>
+          <tr><td>Design</td><td>Aluminum unibody, vapor chamber, titaniumfärgade knappar</td></tr>
+          <tr><td>Mått &amp; vikt</td><td>163.4 × 78.0 × 8.75 mm · 233 g</td></tr>
+          <tr><td>Färger</td><td>Kosmiskt orange, Deep Blue, Silver</td></tr>
+          <tr><td>Modellnamn</td><td>iPhone 17 Pro (A3924)</td></tr>
+        </table>
+      </div>
+
+      <!-- ✅ Reviews -->
+      <div id="reviews" class="tab-content">
+        <div class="review-summary">
+          <div class="rating-breakdown">
+            <div class="avg-rating">4.3</div>
+            <div class="stars">★★★★☆</div>
+            <div class="rating-count-small">152 betyg</div>
+          </div>
+
+          <div class="rating-bars">
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">5 star</span>
+              <div class="rating-bar"><div class="rating-bar-fill" style="width:62%;"></div></div>
+              <span class="rating-bar-pct">62%</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">4 star</span>
+              <div class="rating-bar"><div class="rating-bar-fill" style="width:20%;"></div></div>
+              <span class="rating-bar-pct">20%</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">3 star</span>
+              <div class="rating-bar"><div class="rating-bar-fill" style="width:10%;"></div></div>
+              <span class="rating-bar-pct">10%</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">2 star</span>
+              <div class="rating-bar"><div class="rating-bar-fill" style="width:5%;"></div></div>
+              <span class="rating-bar-pct">5%</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">1 star</span>
+              <div class="rating-bar"><div class="rating-bar-fill" style="width:3%;"></div></div>
+              <span class="rating-bar-pct">3%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-header-left">
+              <span class="stars">★★★★★</span>
+              <div class="review-title">Kosmiskt orange — en ögonöppnare!</div>
+            </div>
+            <div class="review-date">12 feb, 2026</div>
+          </div>
+          <div class="review-body">
+            Färgen är ännu vackrare i verkligheten. A19 Pro + vapor chamber gör att telefonen aldrig hettar upp ens vid lång gaming.
+            Kamerasystemet med 8× zoom är fruktansvärt bra — det gamla 5× räckte inte. Batteri håller nästan 2 dagar vid normal användning.
+          </div>
+          <div class="review-meta"><strong>Verifierat köp</strong> — Anaghem A., Stockholm</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-header-left">
+              <span class="stars">★★★★★</span>
+              <div class="review-title">ProRes RAW förändrar allt för videografi</div>
+            </div>
+            <div class="review-date">9 feb, 2026</div>
+          </div>
+          <div class="review-body">
+            Som videograf är ProRes RAW och genlock det jag väntat på. Kan nu sätta iPhone 17 Pro Max i ett proffs-rig och synka med kameror via genlock.
+            Center Stage-frontkameran är också sensationell — selfievideo i landskap utan att vrida telefonen.
+          </div>
+          <div class="review-meta"><strong>Verifierat köp</strong> — Sara I., Malmö</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-header-left">
+              <span class="stars">★★★★☆</span>
+              <div class="review-title">Imponerande — men priset smärter</div>
+            </div>
+            <div class="review-date">5 feb, 2026</div>
+          </div>
+          <div class="review-body">
+            Prestandan är överträffad och det nya aluminum unibody-designen gör telefonen lättare än 16 Pro Max trots en ännu större batteri.
+            Enda minuset är priset — 16 981 kr är svårt att rättfärdiga om man inte aktivt använder ProRes RAW eller 8× zoom.
+          </div>
+          <div class="review-meta"><strong>Verifierat köp</strong> — Lukas R., Göteborg</div>
+        </div>
+      </div>
+
+      <!-- ✅ Q&A -->
+      <div id="qa" class="tab-content">
+        <div class="qa-list">
+
+          <div class="qa-item">
+            <div class="qa-line">
+              <div class="qa-tag q">F:</div>
+              <div class="qa-text"><strong>Varför är Deep Blue billigare än Cosmic Orange/Silver?</strong></div>
+            </div>
+            <div class="qa-line">
+              <div class="qa-tag a">S:</div>
+              <div class="qa-text">Det beror på Amazons dynamiska prissättning — priserna ändras dagligen baserat på efterfrågan och lagersaldo. Deep Blue har för tillfället lägre initial efterfrågan, vilket speglas i priset.</div>
+            </div>
+            <div class="qa-meta">Besvarad av Amazon · 15 feb, 2026</div>
+          </div>
+
+          <div class="qa-item">
+            <div class="qa-line">
+              <div class="qa-tag q">F:</div>
+              <div class="qa-text"><strong>Vad innebär "genlock" i praktiken?</strong></div>
+            </div>
+            <div class="qa-line">
+              <div class="qa-tag a">S:</div>
+              <div class="qa-text">Genlock låter dig synkronisera iPhone 17 Pro Max med externa kameror på filminspelningar. Det eliminerar synkproblem när iPhone används som en av flera kameror i ett proffsinspelningsupplägg — världens första smartphone att stödja detta.</div>
+            </div>
+            <div class="qa-meta">Besvarad av verifierad köpare · 10 feb, 2026</div>
+          </div>
+
+          <div class="qa-item">
+            <div class="qa-line">
+              <div class="qa-tag q">F:</div>
+              <div class="qa-text"><strong>Vad skiljer Ceramic Shield 2 fram från Ceramic Shield bak?</strong></div>
+            </div>
+            <div class="qa-line">
+              <div class="qa-tag a">S:</div>
+              <div class="qa-text">Fronten har Ceramic Shield 2 med 3× bättre reptålighet. Baksidan har första generationens Ceramic Shield (ny för 2025) med 4× bättre spricktålighet mot baksidan på iPhone 16 Pro Max.</div>
+            </div>
+            <div class="qa-meta">Besvarad av verifierad köpare · 7 feb, 2026</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div style="background:white; border-radius:8px; padding:28px 32px; margin-bottom:20px;">
+      <h2 style="font-size:20px; font-weight:700; margin-bottom:16px;">Om denna artikel</h2>
+      <ul style="list-style:disc; padding-left:20px; display:flex; flex-direction:column; gap:12px; font-size:15px; line-height:1.6; color:#0F1111;">
+        <li><strong>UNIBODY-DESIGN. FÖR OÖVERTRÄFFAD KRAFT.</strong> – Unibody-design i varmpressat aluminium för tidernas mest kraftfulla iPhone.</li>
+        <li><strong>TÅLIGT CERAMIC SHIELD. BÅDE FRAM OCH BAK.</strong> – Ceramic Shield skyddar baksidan av iPhone 17 Pro Max och gör den 4× tåligare mot sprickor. Och nya Ceramic Shield 2 på framsidan har 3× bättre reptålighet.</li>
+        <li><strong>DET ULTIMATA PROFFSKAMERASYSTEMET.</strong> – Med 48 MP-kameror på baksidan och 8× zoom i optisk kvalitet.</li>
+        <li><strong>18 MP CENTER STAGE-SKÄRMKAMERA.</strong> – Smartare selfies och dubbelinspelning (front + bak samtidigt).</li>
+        <li><strong>A19 PRO-CHIPPET. ÅNGKYLT. BLIXTSNABBT.</strong> – Upp till 40 % högre kontinuerlig prestanda.</li>
+        <li><strong>BÄSTA BATTERITIDEN NÅGONSIN I EN IPHONE.</strong> – Upp till 37 timmars video. 50 % på 20 minuter.</li>
+        <li><strong>iOS 26. NY LOOK. NY MAGI.</strong> – Ny design med Liquid Glass.</li>
+      </ul>
+      <p style="margin-top:14px; color:#007185; font-size:14px; cursor:pointer;">▼ Visa mer</p>
+      <p style="margin-top:20px; font-size:13px; color:#565959; display:flex; align-items:center; gap:6px;">
+        📋 <a href="#" style="color:#007185; text-decoration:none;">Rapportera ett problem med den här produkten</a>
+      </p>
+    </div>
+    <!-- ✅ Produkter relaterade till denna artikel (som i bilden) -->
+    <div class="related-products">
+      <h2 class="section-title">Produkter relaterade till denna artikel</h2>
+      <div class="rp-divider"></div>
+
+      <div class="product-carousel">
+        <button class="carousel-btn prev" aria-label="Föregående">‹</button>
+
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="rp-imgwrap">
+              <img src="c:\Users\Sara Ibrahim\OneDrive - BTH Student\AI_MULTI_tenta\projekt\fodral.png" alt="Fodral">
+              <span class="rp-imglabel">Fodral</span>
+            </div>
+            <div class="product-card-content">
+              <h3 class="product-card-title">Apple TechWoven Case med MagSafe — iPhone 17 Pro Max</h3>
+              <div class="product-card-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">341</span>
+              </div>
+              <div class="product-card-price">699<sup>00</sup> kr</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="rp-imgwrap">
+              <img src="c:\Users\Sara Ibrahim\Downloads\Skärmskydd.png" alt="Skärmskydd">
+              <span class="rp-imglabel">Skärmskydd</span>
+            </div>
+            <div class="product-card-content">
+              <h3 class="product-card-title">JETech Skärmskydd för iPhone 17 Pro Max 6.9 tum</h3>
+              <div class="product-card-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-text">5 214</span>
+              </div>
+              <div class="product-card-price">159<sup>00</sup> kr</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="rp-imgwrap">
+              <img src="c:\Users\Sara Ibrahim\OneDrive - BTH Student\AI_MULTI_tenta\projekt\Laddare.png" alt="Laddare">
+              <span class="rp-imglabel">Laddare</span>
+            </div>
+            <div class="product-card-content">
+              <h3 class="product-card-title">Apple 40W Dynamic Power Adapter med 60W Max</h3>
+              <div class="product-card-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">1 892</span>
+              </div>
+              <div class="product-card-price">499<sup>00</sup> kr</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="rp-imgwrap">
+              <img src="c:\Users\Sara Ibrahim\OneDrive - BTH Student\AI_MULTI_tenta\projekt\MagSafe.png" alt="MagSafe">
+              <span class="rp-imglabel">MagSafe</span>
+            </div>
+            <div class="product-card-content">
+              <h3 class="product-card-title">Apple MagSafe Charger Qi2 25W — 2 m USB-C</h3>
+              <div class="product-card-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-text">7 203</span>
+              </div>
+              <div class="product-card-price">499<sup>00</sup> kr</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" aria-label="Nästa">›</button>
+      </div>
+    </div>
+    <!-- Customers also viewed -->
+    <div class="related-products">
+      <h2 class="section-title">Kunderna tittade även på dessa produkter</h2>
+
+      <div class="product-carousel">
+        <button class="carousel-btn prev">‹</button>
+
+        <div class="product-grid">
+          <div class="product-card">
+            <img src="https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-camera-close-up-250909_big.jpg.large.jpg"
+                alt="iPhone 17 Pro" class="product-card-img">
+            <div class="product-card-content">
+              <h3 class="product-card-title">Apple iPhone 17 Pro 256 GB — Cosmic Orange</h3>
+              <div class="product-card-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">2 341</span>
+              </div>
+              <div class="product-card-price">13 995<sup>00</sup> kr</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="https://www.apple.com/v/iphone-17/d/images/overview/welcome/hero_startframe__fslo8k8lane6_xlarge.jpg"
+                alt="iPhone 17" class="product-card-img">
+            <div class="product-card-content">
+              <h3 class="product-card-title">Apple iPhone 17 256 GB — Lavender</h3>
+              <div class="product-card-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">3 847</span>
+              </div>
+              <div class="product-card-price">10 995<sup>00</sup> kr</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg"
+                alt="iPhone 17 Pro Max Silver" class="product-card-img">
+            <div class="product-card-content">
+              <h3 class="product-card-title">Apple iPhone 17 Pro Max 256 GB — Silver</h3>
+              <div class="product-card-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-text">891</span>
+              </div>
+              <div class="product-card-price">16 981<sup>00</sup> kr</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71xN33tNPvL._AC_SL1500_.jpg"
+                alt="iPhone 16 Pro Max" class="product-card-img">
+            <div class="product-card-content">
+              <h3 class="product-card-title">Apple iPhone 16 Pro Max 256 GB (Renoverad)</h3>
+              <div class="product-card-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-text">4 103</span>
+              </div>
+              <div class="product-card-price">11 499<sup>00</sup> kr</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next">›</button>
+      </div>
+    </div>
+
+    <!-- DINA TILLAGDA SEKTIONER (oförändrade) -->
+    <!-- 1. OM DENNA ARTIKEL -->
+
+    <!-- ✅ LAGD UNDER: "Vilken iPhone passar dig bäst?" (som i bilden) -->
+    <div id="compareAnchor"></div>
+    <div class="iphone-compare" id="compareTable">
+      <div class="iphone-compare-title">Jämför Apple iPhone-produkter</div>
+
+      <div class="compare-scroll">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="row-label"></th>
+
+              <th class="compare-head highlight-col">
+                <div class="compare-phone">
+                  <img src="c:\Users\Sara Ibrahim\Pictures\Screenshots\Skärmbild 2026-02-19 000314.png" alt="iPhone 17 Pro Max">
+                  <div class="compare-phone-name">iPhone 17 Pro Max</div>
+                </div>
+              </th>
+
+              <th class="compare-head">
+                <div class="compare-phone">
+                  <img src="c:\Users\Sara Ibrahim\Pictures\Screenshots\Skärmbild 2026-02-19 000735.png" alt="iPhone 17 Pro">
+                  <div class="compare-phone-name">iPhone 17 Pro</div>
+                </div>
+              </th>
+
+              <th class="compare-head">
+                <div class="compare-phone">
+                  <img src="c:\Users\Sara Ibrahim\Pictures\Screenshots\Skärmbild 2026-02-19 000550.png" alt="iPhone Air">
+                  <div class="compare-phone-name">iPhone Air</div>
+                </div>
+              </th>
+
+              <th class="compare-head">
+                <div class="compare-phone">
+                  <img src="c:\Users\Sara Ibrahim\OneDrive - BTH Student\AI_MULTI_tenta\projekt\Skärmbild 2026-02-19 000615.png" alt="iPhone 17">
+                  <div class="compare-phone-name">iPhone 17</div>
+                </div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td class="row-label">PRIS</td>
+              <td class="highlight-col"><span class="compare-price">16 981,00 kr</span></td>
+              <td><span class="compare-price normal">14 279,00 kr</span></td>
+              <td><span class="compare-price normal">10 988,00 kr</span></td>
+              <td><span class="compare-discount">-9%</span><span class="compare-price normal">9 990,00 kr</span></td>
+            </tr>
+
+            <tr>
+              <td class="row-label">BETYG</td>
+              <td class="highlight-col">
+                <div class="compare-rating">
+                  <span class="stars">★★★★½</span>
+                  <a href="#">(152)</a>
+                </div>
+              </td>
+              <td>
+                <div class="compare-rating">
+                  <span class="stars">★★★★½</span>
+                  <a href="#">(187)</a>
+                </div>
+              </td>
+              <td>
+                <div class="compare-rating">
+                  <span class="stars">★★★★½</span>
+                  <a href="#">(82)</a>
+                </div>
+              </td>
+              <td>
+                <div class="compare-rating">
+                  <span class="stars">★★★★½</span>
+                  <a href="#">(173)</a>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="row-label">DISPLAY</td>
+              <td class="highlight-col"><strong>6,9"</strong></td>
+              <td><strong>6,3"</strong></td>
+              <td><strong>6,5"</strong></td>
+              <td><strong>6,3"</strong></td>
+            </tr>
+
+            <tr>
+              <td class="row-label">CHIP</td>
+              <td class="highlight-col"><strong>A19 Pro</strong></td>
+              <td><strong>A19 Pro</strong></td>
+              <td><strong>A19 Pro</strong></td>
+              <td><strong>A19</strong></td>
+            </tr>
+
+            <tr>
+              <td class="row-label">DYNAMIC ISLAND</td>
+              <td class="highlight-col"><span class="compare-check">✓</span></td>
+              <td><span class="compare-check">✓</span></td>
+              <td><span class="compare-check">✓</span></td>
+              <td><span class="compare-check">✓</span></td>
+            </tr>
+
+            <tr>
+              <td class="row-label">OPTISK ZOOM</td>
+              <td class="highlight-col"><strong>0,5x · 1x · 2x · 4x · 8x</strong></td>
+              <td><strong>0,5x · 1x · 2x · 4x · 8x</strong></td>
+              <td><strong>1x · 2x</strong></td>
+              <td><strong>0,5x · 1x · 2x</strong></td>
+            </tr>
+
+            <tr>
+              <td class="row-label">BATTERI</td>
+              <td class="highlight-col" style="color:#067D62;font-weight:800;">Upp till 37 tim</td>
+              <td>Upp till 31 tim</td>
+              <td>Upp till 27 tim</td>
+              <td>Upp till 30 tim</td>
+            </tr>
+
+            <tr>
+              <td class="row-label">KAPACITET</td>
+              <td class="highlight-col"><strong>256 GB · 512 GB · 1 TB · <span style="color:#067D62;">2 TB</span></strong></td>
+              <td><strong>256 GB · 512 GB · 1 TB</strong></td>
+              <td><strong>256 GB · 512 GB · 1 TB</strong></td>
+              <td><strong>256 GB · 512 GB</strong></td>
+            </tr>
+
+            <tr>
+              <td class="row-label">MAGSAFE</td>
+              <td class="highlight-col"><span class="compare-check">✓</span></td>
+              <td><span class="compare-check">✓</span></td>
+              <td><span class="compare-check">✓</span></td>
+              <td><span class="compare-check">✓</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ✅ NYTT: Ligger direkt under "Jämför Apple iPhone-produkter" (som i bilden) -->
+    <div class="apple-below-compare">
+
+      <h2>Gjort för att göra skillnad.</h2>
+      <div class="apple-card-grid">
+        <div class="apple-card">
+          <div class="apple-card-icon"></div>
+          <div class="apple-card-title">iPhone. Inbyggt skydd<br>för ditt privatliv.</div>
+          <div class="apple-card-text">
+            Med iPhone har du koll på vad du delar med hjälp av appen Lösenord, privat surfning i Safari och appen Hälsa.
+          </div>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card-icon">🌍</div>
+          <div class="apple-card-title">Fler återvunna material? Naturligtvis.</div>
+          <div class="apple-card-text">
+            Apple utökar kraftigt användningen av viktiga återvunna metaller i batterier, magneter och mönsterkort som finns i iPhone. Och iPhone-förpackningar är 100 % fiberbaserade, utan plast i eller runt kartongen.
+          </div>
+        </div>
+      </div>
+
+      <h2 style="margin-top:34px;">Enkelt att uppgradera. Enkelt att byta.</h2>
+      <div class="apple-card-grid">
+        <div class="apple-card">
+          <div class="apple-card-icon">📱</div>
+          <div class="apple-card-title">Uppgraderar du från<br>en annan iPhone?</div>
+          <div class="apple-card-text">
+            Håll bara din gamla iPhone bredvid den nya så kan du överföra dina data automatiskt med några få tryck.
+          </div>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card-icon">iOS</div>
+          <div class="apple-card-title">Byter du från Android?</div>
+          <div class="apple-card-text">
+            Appen Flytta till iOS gör det enkelt att överföra bilder, kontakter och annat till din nya iPhone.
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ INSATT: "Ännu mer att gilla." (ska ligga under "Enkelt att uppgradera. Enkelt att byta.") -->
+      <div style="margin-top:26px; background:#f5f5f5; border-radius:16px; padding:22px;">
+        <div style="text-align:center; font-size:22px; font-weight:800; color:#0F1111; margin:6px 0 18px 0;">
+          Ännu mer att gilla.
+        </div>
+
+        <!-- Card 1 -->
+        <div style="background:#fff; border:1px solid #e6e6e6; border-radius:14px; padding:18px 18px; display:flex; gap:16px; align-items:center; justify-content:space-between; margin-bottom:14px;">
+          <div style="flex:1; min-width:220px;">
+            <div style="font-size:12px; font-weight:800; color:#565959; margin-bottom:6px;">iPhone-tillbehör</div>
+            <div style="font-size:22px; font-weight:800; color:#0F1111; line-height:1.15; margin-bottom:8px;">
+              Som gjorda<br>för varandra.
+            </div>
+            <div style="font-size:13px; color:#565959; line-height:1.55; max-width:520px;">
+              Uppgradera med skal, adaptrar, laddnings&shy;tillbehör, extra&shy;remmar med mera.
+            </div>
+          </div>
+
+          <div style="flex:0 0 260px; display:flex; align-items:center; justify-content:center;">
+            <img
+              src="c:\Users\Sara Ibrahim\Pictures\Screenshots\Skärmbild 2026-02-19 001037.png"
+              alt="iPhone tillbehör"
+              style="max-width:260px; width:100%; height:130px; object-fit:contain; display:block;"
+            >
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div style="background:#fff; border:1px solid #e6e6e6; border-radius:14px; padding:18px 18px; display:flex; gap:16px; align-items:center; justify-content:space-between; margin-bottom:14px;">
+          <div style="flex:1; min-width:220px;">
+            <div style="font-size:12px; font-weight:800; color:#565959; margin-bottom:6px;">tv+</div>
+            <div style="font-size:22px; font-weight:800; color:#0F1111; line-height:1.15; margin-bottom:10px;">
+              Köp en iPhone<br>och få Apple TV+<br>gratis i tre månader.*
+            </div>
+            <ul style="margin:0; padding-left:18px; color:#565959; font-size:13px; line-height:1.6; display:flex; flex-direction:column; gap:6px;">
+              <li>Streama hundratals Apple Originals med nya releaser varje vecka.</li>
+              <li>Se dem på iPhone-enheter, streamingplattformar, smart-tv, spelkonsoler med mera.</li>
+              <li>Seks personer kan dela på samma abonnemang på Apple TV+.*</li>
+            </ul>
+          </div>
+
+          <div style="flex:0 0 260px; display:flex; align-items:center; justify-content:center;">
+            <img
+              src="c:\Users\Sara Ibrahim\Pictures\Screenshots\Skärmbild 2026-02-19 001412.png"
+              alt="Apple TV+"
+              style="max-width:260px; width:100%; height:160px; object-fit:cover; border-radius:10px; display:block;"
+            >
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div style="background:#fff; border:1px solid #e6e6e6; border-radius:14px; padding:18px 18px; display:flex; gap:16px; align-items:center; justify-content:space-between;">
+          <div style="flex:1; min-width:220px;">
+            <div style="font-size:12px; font-weight:800; color:#565959; margin-bottom:6px;">Care+</div>
+            <div style="font-size:22px; font-weight:800; color:#0F1111; line-height:1.15; margin-bottom:10px;">
+              Utökat skydd och<br>support från experter.
+            </div>
+            <ul style="margin:0; padding-left:18px; color:#565959; font-size:13px; line-height:1.6; display:flex; flex-direction:column; gap:6px;">
+              <li>Au&shy;ktoriserad Apple-service</li>
+              <li>Förtur till teknisk support</li>
+              <li>Skydd vid oavsiktlig skada</li>
+            </ul>
+          </div>
+
+          <div style="flex:0 0 260px; display:flex; align-items:center; justify-content:center;">
+            <img
+              src="c:\Users\Sara Ibrahim\Pictures\Screenshots\Skärmbild 2026-02-19 001156.png"
+              alt="AppleCare+"
+              style="max-width:260px; width:100%; height:150px; object-fit:contain; display:block;"
+            >
+          </div>
+        </div>
+      </div>
+      <!-- ✅ SLUT PÅ INSATT BLOCK -->
+
+    </div>
+
+  </div>
+
+  <!-- ✅ FOOTER (ska ligga sist på sidan) -->
+  <footer class="amz-footer">
+    <div class="amz-footer-toplink" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ TILLBAKA TILL TOPPEN</div>
+
+    <div class="amz-footer-inner">
+      <div class="amz-footer-cols">
+        <div class="amz-foot-col">
+          <h4>❓ Hjälp &amp; kontakt</h4>
+          <div class="amz-foot-btnlist">
+            <button class="amz-foot-btn">Vanliga frågor</button>
+            <button class="amz-foot-btn">Betalning &amp; säkerhet</button>
+            <button class="amz-foot-btn">Leveranstid</button>
+            <button class="amz-foot-btn">Leverans- och returkostnader</button>
+            <button class="amz-foot-btn">Returnera en vara</button>
+            <button class="amz-foot-btn">Spåra paket eller visa beställningar</button>
+            <button class="amz-foot-btn">Kundtjänst</button>
+          </div>
+        </div>
+
+        <div class="amz-foot-col">
+          <h4>💰 Tjäna pengar med Amazon</h4>
+          <div class="amz-foot-btnlist">
+            <button class="amz-foot-btn">Skydda och bygg ditt varumärke</button>
+            <button class="amz-foot-btn">Sälj med över 540 000 kr i incitament</button>
+            <button class="amz-foot-btn">Bli partner</button>
+            <button class="amz-foot-btn">Fulfillment by Amazon</button>
+            <button class="amz-foot-btn">Leverans till Amazon</button>
+            <button class="amz-foot-btn">Marknadsför dina produkter</button>
+          </div>
+        </div>
+
+        <div class="amz-foot-col">
+          <h4>ℹ️ Om Amazon</h4>
+          <div class="amz-foot-btnlist">
+            <button class="amz-foot-btn">Företagsinformation</button>
+            <button class="amz-foot-btn">Jobb</button>
+            <button class="amz-foot-btn">Pressmeddelanden</button>
+            <button class="amz-foot-btn">Amazon Science</button>
+            <button class="amz-foot-btn">Återvinning</button>
+            <button class="amz-foot-btn">Tillgänglighet</button>
+            <button class="amz-foot-btn">Rapportera olagligt innehåll</button>
+          </div>
+        </div>
+
+        <div class="amz-foot-col">
+          <h4>🌟 Dina fördelar</h4>
+          <div class="amz-foot-benefits">
+            <div class="amz-foot-benefit"><span class="ic">🚚</span><span>Gratis leverans med Prime</span></div>
+            <div class="amz-foot-benefit"><span class="ic">↩️</span><span>Returer inom 30 dagar</span></div>
+            <div class="amz-foot-benefit"><span class="ic">🔒</span><span>Säker betalning</span></div>
+            <div class="amz-foot-benefit"><span class="ic">🎁</span><span>Presentkort tillgängliga</span></div>
+          </div>
+
+          <div class="amz-foot-social">FÖLJ OSS PÅ</div>
+          <div class="amz-social-row">
+            <div class="amz-social fb">f</div>
+            <div class="amz-social ig">◉</div>
+            <div class="amz-social yt">▶</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="amz-footer-mid">
+        <div>
+          <div class="amz-mid-title">🚚 VI LEVERERAR MED</div>
+          <div class="amz-chip-row">
+            <div class="amz-chip">Amazon Logistics</div>
+            <div class="amz-chip">PostNord</div>
+            <div class="amz-chip">DHL</div>
+            <div class="amz-chip">Budbee</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="amz-mid-title">💳 BETALNINGSALTERNATIV</div>
+          <div class="amz-chip-row">
+            <div class="amz-chip">VISA</div>
+            <div class="amz-chip">MC</div>
+            <div class="amz-chip">PayPal</div>
+            <div class="amz-chip">Swish</div>
+            <div class="amz-chip">Amex</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="amz-mid-title">📱 AMAZON-APPEN</div>
+          <div style="font-size:12px;color:#565959;margin-top:-2px;">Handla smidigt var du än är</div>
+          <div class="amz-app-badges">
+            <div class="amz-badge">
+              <div style="font-size:18px;"></div>
+              <div>
+                <small>Hämta i</small>
+                <strong>App Store</strong>
+              </div>
+            </div>
+            <div class="amz-badge">
+              <div style="font-size:18px;">▶</div>
+              <div>
+                <small>Ladda ned på</small>
+                <strong>Google Play</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="amz-footer-subs">
+      <div class="amz-subs-inner">
+        <div class="amz-subs-card"><strong>IMDb</strong><span>Film, tv och kändisar</span></div>
+        <div class="amz-subs-card"><strong>Goodreads</strong><span>Bokrecensioner &amp; rekommendationer</span></div>
+        <div class="amz-subs-card"><strong>Amazon Web Services</strong><span>Skalbara molntjänster</span></div>
+        <div class="amz-subs-card"><strong>Amazon Music</strong><span>Streama miljontals låtar</span></div>
+        <div class="amz-subs-card"><strong>Alexa</strong><span>Lättillgängliga analyser för webben</span></div>
+      </div>
+    </div>
+
+    <div class="amz-footer-bottom">
+      <div class="amz-bottom-inner">
+        <div class="amz-bottom-logo">
+          amazon<span class="se">.se</span>
+          <div class="amz-bottom-smile">
+            <div class="arc"></div>
+          </div>
+        </div>
+
+        <div class="amz-bottom-pills">
+          <div class="amz-pill">🌐 Svenska</div>
+          <div class="amz-pill">🇸🇪 Sverige</div>
+        </div>
+
+        <div class="amz-bottom-pills" style="margin-top:6px;">
+          <div class="amz-pill">Kundtjänst</div>
+          <div class="amz-pill">Integritetspolicy</div>
+          <div class="amz-pill">Användarvillkor</div>
+          <div class="amz-pill">Cookiepreferenser</div>
+          <div class="amz-pill">Annonsera</div>
+          <div class="amz-pill">Bolagsinformation</div>
+          <div class="amz-pill">Tillgänglighet</div>
+        </div>
+
+        <div class="amz-copy">© 1996–2026, Amazon.com, Inc. eller dess närstående bolag</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showTab(tabName, event) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function changeImage(imageUrl, thumbnail) {
+      const mainImg = document.getElementById('mainImageElement');
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src = imageUrl;
+        mainImg.style.opacity = '1';
+      }, 150);
+
+      document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+      thumbnail.classList.add('active');
+    }
+
+    function selectColor(btn, name, hex, price) {
+      document.querySelectorAll('.color-swatch-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('color-label').textContent = name;
+
+      const mainImg = document.getElementById('mainImageElement');
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        if (name === 'Kosmiskt orange') {
+          mainImg.src = 'https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-cosmic-orange-250909_inline.jpg.large.jpg';
+        } else if (name === 'Deep Blue' || name === 'Silver') {
+          mainImg.src = 'https://www.apple.com/newsroom/images/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/article/Apple-iPhone-17-Pro-color-lineup-250909_inline.jpg.large.jpg';
+        }
+        mainImg.style.opacity = '1';
+      }, 150);
+    }
+
+    function selectStorage(btn, size, price) {
+      document.querySelectorAll('.storage-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('storage-label').textContent = size;
+      document.querySelector('.price').innerHTML = price + '<sup>00</sup> kr';
+    }
+
+    document.querySelectorAll('.carousel-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const grid = this.parentElement.querySelector('.product-grid');
+        if (!grid) return;
+        grid.scrollBy({ left: this.classList.contains('prev') ? -360 : 360, behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('scroll', function() {
+      if (window.innerWidth <= 768) {
+        const buyBox = document.querySelector('.unified-buy-box');
+        if (buyBox) buyBox.classList.toggle('sticky', window.scrollY > 300);
+      }
+    });
+    // Carousel (pilarna)
+    document.querySelectorAll('.carousel-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const grid = this.parentElement.querySelector('.product-grid');
+        grid.scrollBy({ left: this.classList.contains('prev') ? -300 : 300, behavior: 'smooth' });
+      });
+    });
+  </script>
+  <script>
+  document.addEventListener("click", function(e) {
+      const btn = e.target.closest("#compareBtn");
+      if (!btn) return;
+    
+      const anchor = document.getElementById("compareAnchor");
+      if (!anchor) return;
+    
+      anchor.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  </script>
+</body>
+</html>
